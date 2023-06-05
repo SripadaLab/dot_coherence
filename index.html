@@ -1,0 +1,66 @@
+<!DOCTYPE html><html class=''>
+<head>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <title>The Experiment Factory Perceptual</title>
+    
+	<link rel='stylesheet' type='text/css' href='jspsych.css'>
+	<link rel='stylesheet' type='text/css' href='default_style.css'>
+	<link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+
+<body>
+<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="js/math.min.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/jspsych.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-survey-text.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-instructions.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-fullscreen.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-call-function.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-rdk.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/poldrack_plugins/jspsych-poldrack-categorize.js"></script>
+<script type="text/javascript" src="lib/jspsych-pavlovia-3.2.5.js"></script>
+
+<script src='SAM.js'></script>
+<script>
+instruct_text = "<p class = block-text>In this task, you will be shown stimuli consisting of asterisks randomly arranged in a box. The box can hold up to 100 asterisks. Your job is to indicate whether there are more or less than 50 asterisks in the box.</p><p class = block-text>You will not have time to count the asterisks, so you will need to rely on your overall judgement of the box.</p>";
+</script>
+
+<script src='standard_blocks.js'></script>
+<script src='experiment.js'></script>
+
+
+<script>
+
+$( document ).ready(function() {
+
+	var subject_id = jsPsych.data.getURLVariable('PROLIFIC_PID');
+	var study_id = jsPsych.data.getURLVariable('STUDY_ID');
+	var session_id = jsPsych.data.getURLVariable('SESSION_ID');
+	
+	var browser = navigator.userAgent;
+	var resolution = "W" + window.screen.availWidth + ",H" + window.screen.availHeight;
+	
+	jsPsych.data.addProperties({
+		exp_id: 'r21_numerosity',
+		subject_id: subject_id,
+		study_id: study_id,
+		session_id: session_id,
+		browser: browser,
+		resolution: resolution
+	});
+	
+    jsPsych.init({
+             timeline: experiment_timeline,
+			 on_finish: function() {
+			 window.location = "https://umich.qualtrics.com/jfe/form/SV_3Rk69Ze8m5NgiLI?PROLIFIC_PID=" + subject_id + "&STUDY_ID=" + study_id + "&SESSION_ID=" + session_id;
+			 }
+      });
+	  
+});
+</script>
+</body>
+</html>
