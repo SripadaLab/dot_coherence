@@ -50,12 +50,12 @@ var instructions_block = {
 	pages: [
 		'<div class = centerbox>' + instruct_text + '</div>',
 	],
-	allow_keys: false,
-	show_clickable_nav: true,
+	allow_keys: true,
+	show_clickable_nav: false,
 	button_label_previous: 'Previous Page',
 	button_label_next: 'Next Page',
 	timing_post_trial: 1000,
-	key_forward: jsPsych.NO_KEYS,
+	key_forward: 'Enter',
 	key_backward: jsPsych.NO_KEYS
 };
 
@@ -127,8 +127,14 @@ var pavlovia_init = {
 var pavlovia_finish = {
 	type: "pavlovia",
 	command: "finish",
+	dataFilter: function(data) {
+		data = jsPsych.data.get().ignore('stimulus').ignore('stim').csv();
+		return data;
+	},
+	completedCallback: function() {
+		
+	}
 };
-
 
 var pause = {
 	type: 'html-keyboard-response',
