@@ -95,7 +95,7 @@ function create_trial(difficulty,type,direction,practice) {
 		correct_choice: correct_response,
 		coherent_direction: angle,
 		coherence: proportion,
-		opposite_coherence: 0,
+		opposite_coherence: 1-proportion,
 		trial_duration: 2000,
 		aperture_type: 3,
 		aperture_width: 800,
