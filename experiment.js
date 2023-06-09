@@ -44,7 +44,7 @@ experiment_timeline.push(instruction_node);
 
 
 function generate_grid(difficulty,type,direction) {
-	var number=300;
+	var number=200;
 	var proportion = 0.50;
 	var angle = 0;
 	
@@ -53,13 +53,13 @@ function generate_grid(difficulty,type,direction) {
 	}
 	
 	if (type=="many") {
-		number = 600;
+		number = 800;
 	}
 	
 	if (difficulty=="easy") {
-		proportion = randomDraw([0.65,0.675,0.70,0.725]);
+		proportion = randomDraw([0.25,0.35,0.50]);
 	} else {
-		proportion = randomDraw([0.525,0.55,0.575,0.6]);
+		proportion = randomDraw([0.05,0.10,0.15]);
 	}
 
 	return [number,proportion,angle];
@@ -95,7 +95,7 @@ function create_trial(difficulty,type,direction,practice) {
 		correct_choice: correct_response,
 		coherent_direction: angle,
 		coherence: proportion,
-		opposite_coherence: 1-proportion,
+		opposite_coherence: 0,
 		trial_duration: 2000,
 		aperture_type: 3,
 		aperture_width: 800,
