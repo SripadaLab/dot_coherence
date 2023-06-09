@@ -1,0 +1,71 @@
+<!DOCTYPE html><html class=''>
+<head>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <title>Dot coherence test</title>
+    
+	<link rel='stylesheet' type='text/css' href='jspsych.css'>
+	<link rel='stylesheet' type='text/css' href='default_style.css'>
+	<link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+
+<body>
+<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="js/math.min.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/jspsych.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-survey-text.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-instructions.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-fullscreen.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-call-function.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/plugins/jspsych-rdk.js"></script>
+<script type="text/javascript" src="js/jspsych-6.3.0/poldrack_plugins/jspsych-poldrack-categorize.js"></script>
+<script type="text/javascript" src="js/jspsych-pavlovia-2020.4.js"></script>
+
+<script src='SAM.js'></script>
+<script>
+instruct_text = "<div class=centerbox><p class = block-text>In this task, you will be shown stimuli consisting of moving dots. Some dots will be moving left and some dots will be moving right.</p><p class=block-text>Your job is to press the arrow corresponding to which direction you think the majority of dots are moving.</p><p class=center-block-text>Press <strong>ENTER</enter> to continue.</p></div>";
+</script>
+
+<script src='standard_blocks.js'></script>
+<script src='experiment2.js'></script>
+
+
+<script>
+
+$( document ).ready(function() {
+
+	var subject_id = jsPsych.data.getURLVariable('PROLIFIC_PID');
+	var study_id = jsPsych.data.getURLVariable('STUDY_ID');
+	var session_id = jsPsych.data.getURLVariable('SESSION_ID');
+	
+	var browser = navigator.userAgent;
+	var resolution = "W" + window.screen.availWidth + ",H" + window.screen.availHeight;
+	
+	jsPsych.data.addProperties({
+		exp_id: 'dot_coherence',
+		subject_id: subject_id,
+		study_id: study_id,
+		session_id: session_id,
+		browser: browser,
+		resolution: resolution
+	});
+	
+    jsPsych.init({
+             timeline: experiment_timeline,
+			 on_finish: function() {
+			 
+				if (!pav) {
+					jsPsych.data.get().localSave('csv','shape_matching_results.csv');
+				};
+				
+				window.location = "https://www.google.com";
+			 }
+      });
+	  
+});
+</script>
+</body>
+</html>
