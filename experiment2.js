@@ -57,7 +57,7 @@ function generate_grid(difficulty,type,direction) {
 	}
 	
 	if (difficulty=="easy") {
-		proportion = randomDraw([0.8]);
+		proportion = randomDraw([0.7]);
 	} else {
 		proportion = randomDraw([0.05,0.10,0.15]);
 	}
